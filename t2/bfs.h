@@ -27,7 +27,7 @@ bool isValid(int row, int col) {
 int dRow[] = { -1, 0, 0, 1 };
 int dCol[] = { 0, -1, 1, 0 };
 
-stack<pair<int, int>> pathMoves(char mat[][COLUMNS], Point src, Point dest) {
+stack<pair<int, int>> pathMoves(char m[][COLUMNS], Point src, Point dest) {
 	stack<pair<int, int>> pathmoves;
 	int d[ROWS][COLUMNS];
 	memset(d, -1, sizeof d);
@@ -62,7 +62,7 @@ stack<pair<int, int>> pathMoves(char mat[][COLUMNS], Point src, Point dest) {
 			int row = pt.x + dRow[i];
 			int col = pt.y + dCol[i];
 			if (isValid(row, col) && !visited[row][col]
-				&& (mat[row][col] == '-' || mat[row][col] == 'A' || mat[row][col] == 'B')) {
+				&& (m[row][col] == '-' || m[row][col] == 'A' || m[row][col] == 'B')) {
 				visited[row][col] = true;
 				Node adjCell = { { row, col }, curr.dist + 1 };
 				q.push(adjCell);

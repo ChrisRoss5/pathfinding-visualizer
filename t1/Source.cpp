@@ -15,9 +15,9 @@ int main() {
 	--ax, --ay, --bx, --by;
 
 	char m[ROWS][COLUMNS];
-	for (int i = 0; i < ROWS; ++i)
-		for (int j = 0; j < COLUMNS; ++j)
-			m[i][j] = ay == i && ax == j ? 'A' : by == i && bx == j ? 'B' : '-';
+	for (int i = 0; i < ROWS; ++i) 
+		for (int j = 0; j < COLUMNS; ++j) m[i][j] = '-';
+	m[ay][ax] = 'A', m[by][bx] = 'B';
 
 	auto print = [&]() {
 		cout << "\033[2J\033[1;1H"; // system("cls");  
