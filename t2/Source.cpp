@@ -21,7 +21,6 @@ int main() {
 			m[i][j] = (i < ROWS / 2 && j == COLUMNS / 2 - 1) ? '*' : '-';
 	m[ay][ax] = 'A', m[by][bx] = 'B';
 
-
 	auto print = [&]() {
 		cout << "\033[2J\033[1;1H"; // system("cls");  
 		m[ay][ax] = 'x';
