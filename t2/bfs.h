@@ -56,6 +56,7 @@ stack<Point> pathMoves(char m[][COLUMNS], Point src, Point dest) {
 					pathmoves.push({ -1, 0 }), yy++;
 				dist--;
 			}
+			break;
 		}
 		q.pop();
 		for (int i = 0; i < 4; i++) {
