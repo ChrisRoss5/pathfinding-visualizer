@@ -27,8 +27,8 @@ bool isValid(int row, int col) {
 int dRow[] = { -1, 0, 0, 1 };
 int dCol[] = { 0, -1, 1, 0 };
 
-stack<pair<int, int>> pathMoves(char m[][COLUMNS], Point src, Point dest) {
-	stack<pair<int, int>> pathmoves;
+stack<Point> pathMoves(char m[][COLUMNS], Point src, Point dest) {
+	stack<Point> pathmoves;
 	int d[ROWS][COLUMNS];
 	memset(d, -1, sizeof d);
 	d[src.x][src.y] = 0;
@@ -47,13 +47,13 @@ stack<pair<int, int>> pathMoves(char m[][COLUMNS], Point src, Point dest) {
 			d[pt.x][pt.y] = dist;
 			while (xx != src.x || yy != src.y) {
 				if (xx > 0 && d[xx - 1][yy] == dist - 1)
-					pathmoves.push({ 1, 0 }), xx--;
+					pathmoves.push({ 0, 1 }), xx--;
 				if (xx < ROWS - 1 && d[xx + 1][yy] == dist - 1)
-					pathmoves.push({ -1, 0 }), xx++;
+					pathmoves.push({ 0, -1 }), xx++;
 				if (yy > 0 && d[xx][yy - 1] == dist - 1)
-					pathmoves.push({ 0, 1 }), yy--;
+					pathmoves.push({ 1, 0 }), yy--;
 				if (yy < COLUMNS - 1 && d[xx][yy + 1] == dist - 1)
-					pathmoves.push({ 0, -1 }), yy++;
+					pathmoves.push({ -1, 0 }), yy++;
 				dist--;
 			}
 		}
@@ -61,11 +61,9 @@ stack<pair<int, int>> pathMoves(char m[][COLUMNS], Point src, Point dest) {
 		for (int i = 0; i < 4; i++) {
 			int row = pt.x + dRow[i];
 			int col = pt.y + dCol[i];
-			if (isValid(row, col) && !visited[row][col]
-				&& (m[row][col] == '-' || m[row][col] == 'A' || m[row][col] == 'B')) {
+			if (isValid(row, col) && !visited[row][col] && m[row][col] != '*') {
 				visited[row][col] = true;
-				Node adjCell = { { row, col }, curr.dist + 1 };
-				q.push(adjCell);
+				q.push({ { row, col }, curr.dist + 1 });
 				d[row][col] = curr.dist + 1;
 			}
 		}

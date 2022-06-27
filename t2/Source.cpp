@@ -4,9 +4,6 @@
 
 using namespace std;
 
-#define ROWS 20
-#define COLUMNS 40
-
 int main() {
 	int ax, ay, bx, by;
 	cout << "A redak: ", cin >> ay;
@@ -35,7 +32,8 @@ int main() {
 	auto pathmoves = pathMoves(m, { ay, ax }, { by, bx });
 	while (!pathmoves.empty()) {
 		auto p = pathmoves.top();
-		ay += p.first, ax += p.second, pathmoves.pop(), print();
+		ay += p.y, ax += p.x;
+		pathmoves.pop(), print();
 	}
 	print();
 	return 0;
